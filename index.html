@@ -1,487 +1,59 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>উমার ইবন শরীফ | Umar ibn Sharif</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Noto+Sans+Bengali:wght@300;400;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --bg: #0a0e1a;
-      --surface: #111827;
-      --surface2: #1a2236;
-      --gold: #c9a84c;
-      --gold-light: #e8c97a;
-      --gold-dim: #7a5e28;
-      --cream: #f5ede0;
-      --text: #e8ddd0;
-      --text-dim: #8a7f72;
-      --accent: #2a6b5c;
-      --border: rgba(201,168,76,0.18);
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Noto Sans Bengali', 'Cairo', sans-serif;
-      overflow-x: hidden;
-    }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 60px;
-      background: rgba(10,14,26,0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: 'Amiri', serif;
-      font-size: 1.45rem; color: var(--gold); letter-spacing: 1px;
-    }
-    .nav-links { display: flex; gap: 30px; list-style: none; }
-    .nav-links a {
-      color: var(--text-dim); text-decoration: none;
-      font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
-      transition: color .3s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    /* HERO */
-    #hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 120px 60px 80px;
-      position: relative; overflow: hidden;
-    }
-    #hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(42,107,92,0.13) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%);
-    }
-    #hero::after {
-      content: '';
-      position: absolute; top: -80px; right: -80px;
-      width: 600px; height: 600px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23c9a84c' stroke-width='0.4' opacity='0.12'%3E%3Cpolygon points='40,5 75,27.5 75,52.5 40,75 5,52.5 5,27.5'/%3E%3Cpolygon points='40,15 65,30 65,50 40,65 15,50 15,30'/%3E%3Cline x1='40' y1='5' x2='40' y2='75'/%3E%3Cline x1='5' y1='27.5' x2='75' y2='52.5'/%3E%3Cline x1='75' y1='27.5' x2='5' y2='52.5'/%3E%3C/g%3E%3C/svg%3E");
-      background-size: 80px 80px;
-      pointer-events: none;
-    }
-    .hero-content {
-      flex: 1; max-width: 55%;
-      position: relative; z-index: 2;
-    }
-    .hero-tag {
-      display: inline-block;
-      font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--gold); border: 1px solid var(--border);
-      padding: 6px 16px; border-radius: 2px; margin-bottom: 28px;
-      opacity: 0; transform: translateY(20px);
-      animation: fadeUp .6s ease forwards .2s;
-    }
-    .hero-name {
-      font-family: 'Amiri', serif;
-      font-size: clamp(2.8rem, 5.5vw, 5rem);
-      line-height: 1.1; color: var(--cream); margin-bottom: 8px;
-      opacity: 0; transform: translateY(30px);
-      animation: fadeUp .7s ease forwards .4s;
-    }
-    .hero-name span { color: var(--gold); }
-    .hero-arabic {
-      font-family: 'Amiri', serif;
-      font-size: 1.7rem; color: var(--gold);
-      margin-bottom: 4px;
-      opacity: 0; transform: translateY(20px);
-      animation: fadeUp .7s ease forwards .5s;
-    }
-    .hero-english {
-      font-family: 'Cairo', sans-serif;
-      font-size: 0.92rem; color: var(--gold-dim);
-      letter-spacing: 3px; text-transform: uppercase;
-      margin-bottom: 28px;
-      opacity: 0; transform: translateY(20px);
-      animation: fadeUp .7s ease forwards .55s;
-    }
-    .hero-desc {
-      font-size: 1rem; line-height: 2;
-      color: var(--text-dim); max-width: 500px; margin-bottom: 40px;
-      opacity: 0; transform: translateY(20px);
-      animation: fadeUp .7s ease forwards .7s;
-    }
-    .hero-roles {
-      display: flex; flex-wrap: wrap; gap: 12px;
-      opacity: 0; transform: translateY(20px);
-      animation: fadeUp .7s ease forwards .85s;
-    }
-    .role-pill {
-      padding: 8px 20px; border-radius: 2px;
-      font-size: 0.82rem; letter-spacing: 1px;
-      border: 1px solid var(--border);
-      color: var(--gold-light); background: rgba(201,168,76,0.07);
-      transition: all .3s; cursor: default;
-    }
-    .role-pill:hover { background: rgba(201,168,76,0.18); border-color: var(--gold); }
-
-    .hero-image-wrap {
-      flex: 0 0 340px; position: relative; z-index: 2;
-      margin-left: auto;
-      opacity: 0; transform: translateX(40px);
-      animation: fadeRight .8s ease forwards .6s;
-    }
-    .hero-image-frame {
-      width: 290px; height: 370px;
-      background: transparent;
-      position: relative;
-      display: flex; align-items: flex-end; justify-content: center;
-    }
-    .hero-image-frame img {
-      width: 100%; height: 100%; object-fit: contain;
-      object-position: bottom;
-      filter: drop-shadow(0 20px 40px rgba(201,168,76,0.2));
-    }
-    .hero-image-placeholder {
-      display: flex; flex-direction: column; align-items: center; gap: 14px;
-      padding: 40px; border: 1px dashed var(--gold-dim);
-      width: 100%; height: 100%; justify-content: center;
-    }
-    .photo-icon { font-size: 3rem; }
-    .photo-label { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 1px; text-align:center; }
-    .corner-deco {
-      position: absolute; top: -12px; left: -12px;
-      width: 36px; height: 36px;
-      border-top: 2px solid var(--gold); border-left: 2px solid var(--gold);
-    }
-    .corner-deco2 {
-      position: absolute; bottom: -12px; right: -12px;
-      width: 36px; height: 36px;
-      border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold);
-    }
-
-    /* BISMILLAH DIVIDER */
-    .divider {
-      display: flex; align-items: center; gap: 20px;
-      padding: 0 60px; margin: 10px 0;
-    }
-    .divider-line { flex: 1; height: 1px; background: var(--border); }
-    .divider-ornament {
-      font-family: 'Amiri', serif;
-      color: var(--gold); font-size: 1.45rem;
-      white-space: nowrap;
-    }
-
-    /* SECTION BASE */
-    section { padding: 100px 60px; }
-    .section-label {
-      font-size: 0.72rem; letter-spacing: 5px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 12px;
-    }
-    .section-title {
-      font-family: 'Amiri', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: var(--cream); margin-bottom: 16px; line-height: 1.2;
-    }
-    .section-subtitle {
-      font-size: 1rem; color: var(--text-dim); max-width: 580px;
-      line-height: 1.85; margin-bottom: 60px;
-    }
-
-    /* WORK */
-    #work { background: var(--surface); }
-    .work-grid { display: flex; flex-direction: column; gap: 80px; }
-    .work-item {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center;
-    }
-    .work-item.reverse { direction: rtl; }
-    .work-item.reverse > * { direction: ltr; }
-    .work-image-box {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      height: 280px;
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-      transition: transform .4s ease;
-    }
-    .work-image-box:hover { transform: scale(1.02); }
-    .work-image-box img {
-      width: 100%; height: 100%; object-fit: contain;
-      padding: 18px;
-      filter: drop-shadow(0 8px 20px rgba(201,168,76,0.15));
-    }
-    .work-image-placeholder-inner {
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
-    }
-    .work-img-icon { font-size: 2.5rem; }
-    .work-img-label { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 1.5px; }
-    .work-image-box::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(42,107,92,0.1), transparent);
-      pointer-events: none;
-    }
-    .work-badge {
-      position: absolute; top: 16px; left: 16px;
-      background: var(--accent); color: var(--gold-light);
-      font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
-      padding: 5px 12px; z-index: 2;
-    }
-    .work-info { padding: 10px 0; }
-    .work-num {
-      font-family: 'Amiri', serif;
-      font-size: 4rem; color: var(--border); line-height: 1;
-      margin-bottom: 12px; user-select: none;
-    }
-    .work-title {
-      font-family: 'Amiri', serif;
-      font-size: 1.9rem; color: var(--cream); margin-bottom: 8px;
-    }
-    .work-org {
-      font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 18px;
-    }
-    .work-desc {
-      font-size: 0.96rem; line-height: 1.85;
-      color: var(--text-dim); margin-bottom: 20px;
-    }
-    .work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
-    .tag {
-      font-size: 0.73rem; letter-spacing: 1px;
-      padding: 5px 12px; border: 1px solid var(--border);
-      color: var(--text-dim); transition: all .2s;
-    }
-    .tag:hover { border-color: var(--gold); color: var(--gold); }
-    .work-link-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      margin-top: 20px; padding: 10px 22px;
-      border: 1px solid var(--gold-dim);
-      color: var(--gold); font-size: 0.8rem; letter-spacing: 2px;
-      text-decoration: none; text-transform: uppercase;
-      transition: all .3s;
-    }
-    .work-link-btn:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); }
-
-    /* APPS */
-    #apps { background: var(--bg); }
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 18px;
-    }
-    .app-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 26px 22px;
-      position: relative;
-      transition: all .35s ease;
-      overflow: hidden;
-      text-decoration: none; color: inherit; display: block;
-    }
-    .app-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--accent));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .35s ease;
-    }
-    .app-card:hover::before { transform: scaleX(1); }
-    .app-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(201,168,76,0.35);
-      background: var(--surface2);
-    }
-    .app-card.dim { opacity: 0.65; }
-    .app-card.dim:hover { opacity: 0.9; }
-    .app-icon { font-size: 1.85rem; margin-bottom: 12px; display: block; }
-    .app-name {
-      font-family: 'Cairo', sans-serif;
-      font-size: 1rem; font-weight: 700;
-      color: var(--cream); margin-bottom: 6px;
-    }
-    .app-desc { font-size: 0.79rem; color: var(--text-dim); line-height: 1.7; }
-    .app-status {
-      display: inline-block; margin-top: 10px;
-      font-size: 0.66rem; letter-spacing: 2px; text-transform: uppercase;
-      padding: 3px 8px; border: 1px solid;
-    }
-    .s-live { color: #4ade80; border-color: rgba(74,222,128,0.3); }
-    .s-soon { color: var(--text-dim); border-color: var(--border); }
-
-    /* DEEN GROUP */
-    #deengroup { background: var(--surface); }
-    .deen-intro {
-      display: grid; grid-template-columns: 1fr 1.6fr;
-      gap: 80px; align-items: start;
-    }
-    .deen-big-num {
-      font-family: 'Amiri', serif;
-      font-size: clamp(5rem, 10vw, 9rem);
-      color: var(--border); line-height: 1; user-select: none;
-    }
-    .deen-group-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
-      gap: 10px;
-    }
-    .deen-item {
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      font-size: 0.84rem; color: var(--text-dim);
-      transition: all .3s;
-      display: flex; align-items: center; gap: 8px;
-      text-decoration: none; cursor: default;
-    }
-    a.deen-item { cursor: pointer; }
-    .deen-item::before { content: '◆'; color: var(--gold); font-size: 0.42rem; flex-shrink: 0; }
-    .deen-item:hover {
-      background: rgba(201,168,76,0.07);
-      color: var(--gold-light); border-color: rgba(201,168,76,0.4);
-    }
-    .item-status {
-      margin-left: auto; font-size: 0.6rem;
-      letter-spacing: 1px; color: var(--text-dim); opacity: 0.65;
-      white-space: nowrap;
-    }
-
-    /* CONTENT */
-    #content { background: var(--bg); }
-    .content-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-    }
-    .content-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 32px 28px;
-      transition: all .35s;
-      position: relative; overflow: hidden;
-      text-decoration: none; color: inherit; display: block;
-    }
-    .content-card::after {
-      content: '';
-      position: absolute; bottom: 0; right: 0;
-      width: 55px; height: 55px;
-      border-top: 1px solid var(--border); border-left: 1px solid var(--border);
-      transform: translate(28px, 28px); transition: transform .35s;
-    }
-    .content-card:hover::after { transform: translate(0,0); border-color: var(--gold); }
-    .content-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
-    .content-cat {
-      font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 16px;
-    }
-    .content-title {
-      font-family: 'Amiri', serif;
-      font-size: 1.35rem; color: var(--cream);
-      margin-bottom: 12px; line-height: 1.4;
-    }
-    .content-desc { font-size: 0.87rem; color: var(--text-dim); line-height: 1.8; }
-    .content-cta {
-      display: inline-block; margin-top: 18px;
-      font-size: 0.7rem; letter-spacing: 2px;
-      color: var(--gold); text-transform: uppercase;
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 50px 60px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .footer-name {
-      font-family: 'Amiri', serif;
-      font-size: 1.7rem; color: var(--gold);
-    }
-    .footer-sub {
-      font-size: 0.75rem; letter-spacing: 1px; color: var(--text-dim);
-      display: block; margin-top: 5px;
-    }
-    .footer-copy { font-size: 0.78rem; color: var(--text-dim); text-align: center; line-height: 1.7; }
-    .footer-link {
-      font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
-      color: var(--text-dim); text-decoration: none; transition: color .3s;
-    }
-    .footer-link:hover { color: var(--gold); }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeRight { to { opacity: 1; transform: translateX(0); } }
-    .reveal {
-      opacity: 0; transform: translateY(36px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: .1s; }
-    .reveal-delay-2 { transition-delay: .2s; }
-    .reveal-delay-3 { transition-delay: .3s; }
-
-    /* RESPONSIVE */
-    @media (max-width: 960px) {
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
-      #hero { padding: 100px 24px 60px; flex-direction: column; }
-      .hero-content { max-width: 100%; }
-      .hero-image-wrap { margin: 40px auto 0; flex: none; }
-      section { padding: 70px 24px; }
-      .work-item, .work-item.reverse { grid-template-columns: 1fr; direction: ltr; }
-      .content-grid { grid-template-columns: 1fr; }
-      .deen-intro { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px; }
-      .divider { padding: 0 24px; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ══ NAV ══ -->
 <nav>
-  <div class="nav-logo">عُمَر ابْنُ شَرِيف</div>
+  <a href="#hero" class="nav-logo">
+    <img src="logo.png" alt="logo"
+         onerror="this.style.display='none'">
+    <span class="nav-logo-text">عُمَر ابْنُ شَرِيف</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#hero">হোম</a></li>
     <li><a href="#work">পেশা</a></li>
     <li><a href="#apps">দ্বীন অ্যাপস</a></li>
     <li><a href="#deengroup">দ্বীন গ্রুপ</a></li>
     <li><a href="#content">কন্টেন্ট</a></li>
+    <li><a href="#contact">যোগাযোগ</a></li>
   </ul>
 </nav>
 
 <!-- ══ HERO ══ -->
 <section id="hero">
   <div class="hero-content">
-    <div class="hero-tag">umar.github.io/pweb · ব্যক্তিগত ওয়েবসাইট</div>
     <h1 class="hero-name">উমার<br/><span>ইবন শরীফ</span></h1>
     <div class="hero-arabic">عُمَر ابْنُ شَرِيف</div>
     <div class="hero-english">Umar ibn Sharif</div>
     <p class="hero-desc">
-      উমার ইবন শরীফ একজন বহুমুখী ইসলামিক উদ্যোক্তা। তিনি শিক্ষক, লাইব্রেরিয়ান,
-      ডেভেলপার ও লেখক হিসেবে একসাথে কাজ করেন। "দ্বীন গ্রুপ" নামক বৃহৎ ইসলামিক
-      উদ্যোগের তিনিই প্রতিষ্ঠাতা। প্রযুক্তি ও সাহিত্যের মাধ্যমে দ্বীনের বার্তা
-      ছড়িয়ে দেওয়ার লক্ষ্যে তিনি নিরলসভাবে কাজ করে যাচ্ছেন।
+      উমার একজন শিক্ষার্থী যিনি ২০২৮ সালে এসএসসি দেবেন। পড়াশোনার পাশাপাশি
+      তিনি শিক্ষকতা, লাইব্রেরি পরিচালনা, অভিনয় ও লেখালেখি করেন।
+      "দ্বীন গ্রুপ" নামে একটি ইসলামিক উদ্যোগও তাঁর নিজের হাতে গড়া।
     </p>
     <div class="hero-roles">
-      <div class="role-pill">🎓 শিক্ষক</div>
-      <div class="role-pill">📚 লাইব্রেরিয়ান</div>
-      <div class="role-pill">💻 ডেভেলপার</div>
-      <div class="role-pill">✍️ লেখক</div>
-      <div class="role-pill">🌙 উদ্যোক্তা</div>
+      <div class="role-pill">শিক্ষার্থী</div>
+      <div class="role-pill">শিক্ষক</div>
+      <div class="role-pill">লাইব্রেরিয়ান</div>
+      <div class="role-pill">ডেভেলপার</div>
+      <div class="role-pill">লেখক</div>
     </div>
   </div>
 
   <div class="hero-image-wrap">
-    <div style="position:relative; display:inline-block;">
+    <div style="position:relative;display:inline-block;">
       <div class="corner-deco"></div>
       <div class="hero-image-frame">
-        <!-- ho.png = ব্যাকগ্রাউন্ড ছাড়া PNG ছবি -->
+        <!-- ho.png = ব্যাকগ্রাউন্ড ছাড়া PNG -->
         <img src="ho.png" alt="উমার ইবন শরীফ"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="hero-image-placeholder" style="display:none;">
-          <div class="photo-icon">👤</div>
           <div class="photo-label">ho.png<br/>এখানে রাখুন</div>
         </div>
       </div>
@@ -499,24 +71,22 @@
 
 <!-- ══ WORK ══ -->
 <section id="work">
-  <div class="section-label reveal">পেশাদার জীবন</div>
-  <h2 class="section-title reveal reveal-delay-1">তাঁর কর্মক্ষেত্র</h2>
+  <div class="section-label reveal">পেশা</div>
+  <h2 class="section-title reveal reveal-delay-1">তিনি যা করেন</h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    উমার ইবন শরীফ একাধারে শিক্ষকতা, লাইব্রেরি পরিচালনা, অভিনয়, লেখালেখি ও
-    ক্রিয়েটিভ প্রোজেক্ট তৈরির কাজে নিয়োজিত — সবটাই দ্বীনের পথে।
+    পড়াশোনার ফাঁকে উমার নানা কাজে যুক্ত আছেন — সবটাই দ্বীনের পথে।
   </p>
 
   <div class="work-grid">
 
-    <!-- ০১ · শিক্ষক -->
+    <!-- ০১ শিক্ষক -->
     <div class="work-item reveal">
       <div class="work-image-box">
         <div class="work-badge">শিক্ষক</div>
         <img src="1.png" alt="দ্বীন একাডেমি"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="work-image-placeholder-inner" style="display:none;">
-          <div class="work-img-icon">🎓</div>
-          <div class="work-img-label">1.png — ক্লাসের ছবি</div>
+          <div class="work-img-label">1.png</div>
         </div>
       </div>
       <div class="work-info">
@@ -524,31 +94,26 @@
         <h3 class="work-title">শিক্ষক</h3>
         <div class="work-org">দ্বীন একাডেমি · Deen Academy</div>
         <p class="work-desc">
-          উমার ইবন শরীফ দ্বীন একাডেমিতে শিক্ষক হিসেবে কর্মরত আছেন। তিনি
-          ইসলামিক জ্ঞান ও আধুনিক বিষয়াবলি মিলিয়ে ক্লাস পরিচালনা করেন।
-          শিক্ষার্থীদের মাঝে ইলমের আলো ছড়িয়ে দেওয়াই তাঁর মূল লক্ষ্য।
-          প্রতিটি ক্লাসে তিনি জ্ঞানের এক নতুন দরজা খুলে দেওয়ার চেষ্টা করেন।
+          উমার দ্বীন একাডেমিতে কম্পিউটার প্রোগ্রামিং শেখান।
+          ছোটদের কাছে কোডিং সহজ করে তোলাই তাঁর লক্ষ্য।
         </p>
         <div class="work-tags">
-          <span class="tag">ইসলামিক শিক্ষা</span>
+          <span class="tag">প্রোগ্রামিং</span>
+          <span class="tag">কম্পিউটার</span>
           <span class="tag">অনলাইন ক্লাস</span>
-          <span class="tag">দ্বীন একাডেমি</span>
         </div>
-        <a href="https://sites.google.com/view/deen-academy" target="_blank" class="work-link-btn">
-          ↗ দ্বীন একাডেমিতে যান
-        </a>
+        <a href="https://sites.google.com/view/deen-academy" target="_blank" class="work-link-btn">দ্বীন একাডেমিতে যান</a>
       </div>
     </div>
 
-    <!-- ০২ · লাইব্রেরিয়ান -->
+    <!-- ০২ লাইব্রেরিয়ান -->
     <div class="work-item reverse reveal">
       <div class="work-image-box">
         <div class="work-badge">লাইব্রেরিয়ান</div>
         <img src="2.png" alt="মাকতাবাতুদ দ্বীন"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="work-image-placeholder-inner" style="display:none;">
-          <div class="work-img-icon">📖</div>
-          <div class="work-img-label">2.png — লাইব্রেরির ছবি</div>
+          <div class="work-img-label">2.png</div>
         </div>
       </div>
       <div class="work-info">
@@ -556,28 +121,25 @@
         <h3 class="work-title">লাইব্রেরিয়ান</h3>
         <div class="work-org">মাকতাবাতুদ দ্বীন · Maktabatud Deen</div>
         <p class="work-desc">
-          মাকতাবাতুদ দ্বীন হলো উমার ইবন শরীফ পরিচালিত অফলাইন ইসলামিক লাইব্রেরি।
-          তিনি লাইব্রেরিয়ান হিসেবে ইসলামিক বই সংরক্ষণ, ক্যাটালগিং ও পাঠকসেবা
-          প্রদান করে থাকেন। পাশাপাশি সম্পূর্ণ অনলাইন Deen Library-ও তৈরি হচ্ছে।
-          ইলমের ভাণ্ডার সকলের কাছে পৌঁছে দেওয়াই তাঁর লক্ষ্য।
+          মাকতাবাতুদ দ্বীন হলো উমারের পরিচালিত ইসলামিক লাইব্রেরি।
+          এটি অফলাইনে বই সরবরাহ করে। পাশাপাশি অনলাইন Deen Library-ও তৈরি হচ্ছে।
         </p>
         <div class="work-tags">
           <span class="tag">ইসলামিক বই</span>
-          <span class="tag">পাঠকসেবা</span>
-          <span class="tag">অফলাইন লাইব্রেরি</span>
+          <span class="tag">লাইব্রেরি</span>
         </div>
+        <a href="https://sites.google.com/view/maktabatuddeen" target="_blank" class="work-link-btn">মাকতাবাতুদ দ্বীন</a>
       </div>
     </div>
 
-    <!-- ০৩ · অভিনেতা -->
+    <!-- ০৩ অভিনেতা -->
     <div class="work-item reveal">
       <div class="work-image-box">
         <div class="work-badge">অভিনেতা</div>
         <img src="3.png" alt="দ্বীন স্টুডিও"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="work-image-placeholder-inner" style="display:none;">
-          <div class="work-img-icon">🎭</div>
-          <div class="work-img-label">3.png — অভিনয়ের ছবি</div>
+          <div class="work-img-label">3.png</div>
         </div>
       </div>
       <div class="work-info">
@@ -585,81 +147,67 @@
         <h3 class="work-title">অভিনেতা</h3>
         <div class="work-org">দ্বীন স্টুডিও · Deen Studio</div>
         <p class="work-desc">
-          দ্বীন স্টুডিওতে উমার ইবন শরীফ অভিনেতা হিসেবে ইসলামিক বিষয়বস্তুভিত্তিক
-          প্রযোজনায় অংশগ্রহণ করেন। হালাল বিনোদনের মাধ্যমে দ্বীনের সৌন্দর্য
-          উপস্থাপন করাই দ্বীন স্টুডিওর লক্ষ্য। প্রতিটি কাজে তিনি একটি
-          ইতিবাচক বার্তা পৌঁছে দেওয়ার চেষ্টা করেন।
+          দ্বীন স্টুডিওতে উমার অভিনয় করেন। হালাল বিনোদনের মাধ্যমে
+          দ্বীনের কথা তুলে ধরাই এর উদ্দেশ্য।
         </p>
         <div class="work-tags">
-          <span class="tag">ইসলামিক কন্টেন্ট</span>
           <span class="tag">হালাল বিনোদন</span>
           <span class="tag">দ্বীন স্টুডিও</span>
         </div>
-        <a href="https://sites.google.com/view/deen-studio" target="_blank" class="work-link-btn">
-          ↗ দ্বীন স্টুডিওতে যান
-        </a>
+        <a href="https://sites.google.com/view/deen-studio" target="_blank" class="work-link-btn">দ্বীন স্টুডিও</a>
       </div>
     </div>
 
-    <!-- ০৪ · দ্বীন স্টোরি -->
+    <!-- ০৪ দ্বীন স্টোরি -->
     <div class="work-item reverse reveal">
       <div class="work-image-box">
         <div class="work-badge">লেখক</div>
         <img src="4.png" alt="দ্বীন স্টোরি"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="work-image-placeholder-inner" style="display:none;">
-          <div class="work-img-icon">✍️</div>
-          <div class="work-img-label">4.png — লেখার ছবি</div>
+          <div class="work-img-label">4.png</div>
         </div>
       </div>
       <div class="work-info">
         <div class="work-num">০৪</div>
-        <h3 class="work-title">গল্পকার ও কবি</h3>
+        <h3 class="work-title">গল্প ও কবিতা</h3>
         <div class="work-org">দ্বীন স্টোরি · Deen Story</div>
         <p class="work-desc">
-          দ্বীন স্টোরি ব্লগে উমার ইবন শরীফ নিয়মিত ইসলামিক গল্প ও কবিতা লিখে
-          থাকেন। তাঁর প্রতিটি রচনায় ঈমান, ভালোবাসা ও জীবনের গভীর কথা ফুটে ওঠে।
-          সাহিত্যের ভাষায় দ্বীনের বার্তা পৌঁছে দেওয়াই তাঁর সাহিত্যচর্চার মূল উদ্দেশ্য।
+          উমার দ্বীন স্টোরি ব্লগে নিয়মিত ইসলামিক গল্প ও কবিতা লেখেন।
+          সাহিত্যের মাধ্যমে দ্বীনের কথা বলাই এর লক্ষ্য।
         </p>
         <div class="work-tags">
-          <span class="tag">ইসলামিক সাহিত্য</span>
-          <span class="tag">গল্প ও কবিতা</span>
+          <span class="tag">গল্প</span>
+          <span class="tag">কবিতা</span>
           <span class="tag">ব্লগ</span>
         </div>
-        <a href="https://deen-stories.blogspot.com" target="_blank" class="work-link-btn">
-          ↗ দ্বীন স্টোরি পড়ুন
-        </a>
+        <a href="https://deen-stories.blogspot.com" target="_blank" class="work-link-btn">দ্বীন স্টোরি পড়ুন</a>
       </div>
     </div>
 
-    <!-- ০৫ · দ্বীন প্রোজেক্টস -->
+    <!-- ০৫ দ্বীন প্রোজেক্টস -->
     <div class="work-item reveal">
       <div class="work-image-box">
         <div class="work-badge">ডেভেলপার</div>
         <img src="5.png" alt="দ্বীন প্রোজেক্টস"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="work-image-placeholder-inner" style="display:none;">
-          <div class="work-img-icon">🖥️</div>
-          <div class="work-img-label">5.png — প্রোজেক্টের ছবি</div>
+          <div class="work-img-label">5.png</div>
         </div>
       </div>
       <div class="work-info">
         <div class="work-num">০৫</div>
-        <h3 class="work-title">প্রোজেক্ট নির্মাতা</h3>
+        <h3 class="work-title">স্ক্র্যাচ প্রোজেক্ট</h3>
         <div class="work-org">দ্বীন প্রোজেক্টস · Deen Projects</div>
         <p class="work-desc">
-          উমার ইবন শরীফ স্ক্র্যাচ প্ল্যাটফর্মে ইন্টারেক্টিভ ইসলামিক প্রোজেক্ট তৈরি করেন
-          এবং দ্বীন প্রোজেক্টসে শেয়ার করেন। শিশু থেকে বড় — সবার জন্য শিক্ষামূলক
-          ও বিনোদনমূলক ইন্টারেক্টিভ কন্টেন্ট তৈরি করাই তাঁর লক্ষ্য।
+          উমার স্ক্র্যাচে ইসলামিক প্রোজেক্ট বানান এবং দ্বীন প্রোজেক্টসে শেয়ার করেন।
+          সবার জন্য শিক্ষামূলক ইন্টারেক্টিভ কন্টেন্ট তৈরি করাই উদ্দেশ্য।
         </p>
         <div class="work-tags">
           <span class="tag">স্ক্র্যাচ</span>
           <span class="tag">ইন্টারেক্টিভ</span>
-          <span class="tag">শিক্ষামূলক</span>
         </div>
-        <a href="https://sites.google.com/view/deenprojects" target="_blank" class="work-link-btn">
-          ↗ দ্বীন প্রোজেক্টস দেখুন
-        </a>
+        <a href="https://sites.google.com/view/deenprojects" target="_blank" class="work-link-btn">দ্বীন প্রোজেক্টস</a>
       </div>
     </div>
 
@@ -668,95 +216,119 @@
 
 <!-- ══ APPS ══ -->
 <section id="apps">
-  <div class="section-label reveal">ডিজিটাল উদ্যোগ</div>
-  <h2 class="section-title reveal reveal-delay-1">দ্বীন অ্যাপস ও টুলস</h2>
+  <div class="section-label reveal">ডিজিটাল টুলস</div>
+  <h2 class="section-title reveal reveal-delay-1">দ্বীন অ্যাপস</h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    প্রযুক্তির মাধ্যমে দ্বীনের সেবা — উমার ইবন শরীফের তৈরি অ্যাপ্লিকেশন ও ডিজিটাল টুলস।
+    উমারের তৈরি অ্যাপ ও ডিজিটাল টুলস — প্রযুক্তি দিয়ে দ্বীনের সেবা।
   </p>
   <div class="apps-grid">
 
     <a href="https://deenbd.github.io/chat" target="_blank" class="app-card reveal">
-      <span class="app-icon">💬</span>
+      <img src="logo5.png" alt="Deen Chat" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo5</div>
       <div class="app-name">Deen Chat</div>
-      <div class="app-desc">ইসলামিক কমিউনিটির জন্য বিশেষ চ্যাট প্ল্যাটফর্ম।</div>
-      <span class="app-status s-live">● লাইভ</span>
+      <div class="app-desc">ইসলামিক কমিউনিটির জন্য চ্যাট প্ল্যাটফর্ম।</div>
+      <span class="app-status s-live">লাইভ</span>
     </a>
 
     <div class="app-card dim reveal reveal-delay-1">
-      <span class="app-icon">🤖</span>
+      <img src="logo3.png" alt="Deen AI" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo3</div>
       <div class="app-name">Deen AI</div>
-      <div class="app-desc">ইসলামিক জ্ঞানভিত্তিক আর্টিফিশিয়াল ইন্টেলিজেন্স অ্যাসিস্ট্যান্ট।</div>
-      <span class="app-status s-soon">⬇ ডাউনলোড শীঘ্রই</span>
+      <div class="app-desc">ইসলামিক জ্ঞানভিত্তিক AI অ্যাসিস্ট্যান্ট।</div>
+      <span class="app-status s-soon">শীঘ্রই</span>
     </div>
 
     <div class="app-card dim reveal reveal-delay-2">
-      <span class="app-icon">🌐</span>
+      <img src="logo26.png" alt="Deen Translator" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo26</div>
       <div class="app-name">Deen Translator</div>
-      <div class="app-desc">ইসলামিক গ্রন্থ ও কন্টেন্ট অনুবাদের জন্য বিশেষ টুল।</div>
-      <span class="app-status s-soon">⬇ ডাউনলোড শীঘ্রই</span>
+      <div class="app-desc">ইসলামিক গ্রন্থ অনুবাদের বিশেষ টুল।</div>
+      <span class="app-status s-soon">শীঘ্রই</span>
     </div>
 
     <div class="app-card dim reveal reveal-delay-3">
-      <span class="app-icon">🎙️</span>
+      <img src="logo27.png" alt="Deen Voice Chat" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo27</div>
       <div class="app-name">Deen Voice Chat</div>
-      <div class="app-desc">ভয়েসের মাধ্যমে দ্বীনি আলোচনা ও চ্যাটিং প্ল্যাটফর্ম।</div>
-      <span class="app-status s-soon">⬇ ডাউনলোড শীঘ্রই</span>
+      <div class="app-desc">ভয়েসে দ্বীনি আলোচনার প্ল্যাটফর্ম।</div>
+      <span class="app-status s-soon">শীঘ্রই</span>
     </div>
 
     <div class="app-card dim reveal">
-      <span class="app-icon">🗺️</span>
+      <img src="logo14.png" alt="Deen Map" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo14</div>
       <div class="app-name">Deen Map</div>
-      <div class="app-desc">মসজিদ, মাদ্রাসা ও ইসলামিক স্থান খোঁজার ম্যাপ অ্যাপ।</div>
-      <span class="app-status s-soon">⬇ ডাউনলোড শীঘ্রই</span>
+      <div class="app-desc">মসজিদ ও মাদ্রাসা খোঁজার ম্যাপ।</div>
+      <span class="app-status s-soon">শীঘ্রই</span>
     </div>
 
     <div class="app-card dim reveal reveal-delay-1">
-      <span class="app-icon">🌍</span>
+      <img src="logo4.png" alt="Deen Browser" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo4</div>
       <div class="app-name">Deen Browser</div>
-      <div class="app-desc">হালাল কন্টেন্ট ফিল্টারযুক্ত ইসলামিক ওয়েব ব্রাউজার।</div>
-      <span class="app-status s-soon">⬇ ডাউনলোড শীঘ্রই</span>
+      <div class="app-desc">হালাল ফিল্টারযুক্ত ইসলামিক ব্রাউজার।</div>
+      <span class="app-status s-soon">শীঘ্রই</span>
     </div>
 
     <div class="app-card dim reveal reveal-delay-2">
-      <span class="app-icon">🎮</span>
+      <img src="logo9.png" alt="Deen Games" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo9</div>
       <div class="app-name">Deen Games</div>
-      <div class="app-desc">ইসলামিক মূল্যবোধভিত্তিক শিক্ষামূলক গেমস সংগ্রহ।</div>
-      <span class="app-status s-soon">⬇ ডাউনলোড শীঘ্রই</span>
+      <div class="app-desc">ইসলামিক শিক্ষামূলক গেমস।</div>
+      <span class="app-status s-soon">শীঘ্রই</span>
     </div>
 
     <div class="app-card dim reveal reveal-delay-3">
-      <span class="app-icon">📝</span>
+      <img src="logo15.png" alt="Deen Pad" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo15</div>
       <div class="app-name">Deen Pad</div>
-      <div class="app-desc">ইসলামিক নোট নেওয়া ও লেখালেখির স্মার্ট নোটপ্যাড।</div>
-      <span class="app-status s-soon">⬇ ডাউনলোড শীঘ্রই</span>
+      <div class="app-desc">স্মার্ট ইসলামিক নোটপ্যাড।</div>
+      <span class="app-status s-soon">শীঘ্রই</span>
     </div>
 
     <div class="app-card dim reveal">
-      <span class="app-icon">💻</span>
+      <img src="logo8.png" alt="Deen Coder" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo8</div>
       <div class="app-name">Deen Coder</div>
-      <div class="app-desc">ইসলামিক প্রোগ্রামারদের জন্য বিশেষ কোডিং পরিবেশ।</div>
-      <span class="app-status s-soon">⬇ ডাউনলোড শীঘ্রই</span>
+      <div class="app-desc">ইসলামিক কোডিং পরিবেশ।</div>
+      <span class="app-status s-soon">শীঘ্রই</span>
     </div>
 
     <div class="app-card dim reveal reveal-delay-1">
-      <span class="app-icon">▶️</span>
+      <img src="logo17.png" alt="Deen Player" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo17</div>
       <div class="app-name">Deen Player</div>
-      <div class="app-desc">ইসলামিক অডিও ও ভিডিও কন্টেন্টের জন্য মিডিয়া প্লেয়ার।</div>
-      <span class="app-status s-soon">⬇ ডাউনলোড শীঘ্রই</span>
+      <div class="app-desc">ইসলামিক মিডিয়া প্লেয়ার।</div>
+      <span class="app-status s-soon">শীঘ্রই</span>
     </div>
 
     <div class="app-card dim reveal reveal-delay-2">
-      <span class="app-icon">🤝</span>
+      <img src="logo11.png" alt="Deen Helper" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo11</div>
       <div class="app-name">Deen Helper</div>
-      <div class="app-desc">দৈনন্দিন ইসলামিক জীবনে সহায়তাকারী স্মার্ট অ্যাপ।</div>
-      <span class="app-status s-soon">⬇ ডাউনলোড শীঘ্রই</span>
+      <div class="app-desc">দৈনন্দিন জীবনে সহায়তার অ্যাপ।</div>
+      <span class="app-status s-soon">শীঘ্রই</span>
     </div>
 
     <div class="app-card dim reveal reveal-delay-3">
-      <span class="app-icon">🌐</span>
+      <img src="logo28.png" alt="Deen WebApp" class="app-logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="app-logo-placeholder" style="display:none;">logo28</div>
       <div class="app-name">Deen WebApp</div>
-      <div class="app-desc">দ্বীন গ্রুপের সার্ভিস একত্রে ব্যবহারের ওয়েব অ্যাপ্লিকেশন।</div>
-      <span class="app-status s-soon">⬇ ডাউনলোড শীঘ্রই</span>
+      <div class="app-desc">দ্বীন গ্রুপের সব সার্ভিস একসাথে।</div>
+      <span class="app-status s-soon">শীঘ্রই</span>
     </div>
 
   </div>
@@ -766,44 +338,152 @@
 <section id="deengroup">
   <div class="deen-intro">
     <div class="reveal">
-      <div class="section-label">বৃহৎ উদ্যোগ</div>
+      <div class="section-label">সকল উদ্যোগ</div>
       <h2 class="section-title">দ্বীন গ্রুপ</h2>
       <div class="deen-big-num">২৭+</div>
       <p class="section-subtitle" style="margin-bottom:0;">
-        দ্বীন গ্রুপ হলো উমার ইবন শরীফের তৈরি সকল ইসলামিক উদ্যোগের সমষ্টি।
-        শিক্ষা, প্রযুক্তি, মিডিয়া ও সেবা — সব মিলিয়ে এক বৃহৎ ইসলামিক
-        ইকোসিস্টেম গড়ার স্বপ্ন নিয়ে তিনি কাজ করে যাচ্ছেন।
+        দ্বীন গ্রুপ হলো উমারের তৈরি সব ইসলামিক উদ্যোগের সমষ্টি —
+        শিক্ষা, প্রযুক্তি, মিডিয়া সব মিলিয়ে।
       </p>
     </div>
     <div class="reveal reveal-delay-2">
       <div class="deen-group-grid">
-        <a href="https://deenbd.github.io/Saad---Abdullah/" target="_blank" class="deen-item">Deen Abdullah &amp; Saad<span class="item-status">↗</span></a>
-        <a href="https://sites.google.com/view/deen-academy" target="_blank" class="deen-item">Deen Academy<span class="item-status">↗</span></a>
-        <div class="deen-item">Deen AI<span class="item-status">শীঘ্রই</span></div>
-        <div class="deen-item">Deen Browser<span class="item-status">শীঘ্রই</span></div>
-        <div class="deen-item">Deen Builder<span class="item-status">শীঘ্রই</span></div>
-        <a href="https://www.youtube.com/@Deen-Cartoon" target="_blank" class="deen-item">Deen Cartoon<span class="item-status">↗</span></a>
-        <a href="https://deenbd.github.io/chat" target="_blank" class="deen-item">Deen Chat<span class="item-status">↗</span></a>
-        <div class="deen-item">Deen Coder<span class="item-status">শীঘ্রই</span></div>
-        <div class="deen-item">Deen Games<span class="item-status">শীঘ্রই</span></div>
-        <div class="deen-item">Maktabatud Deen<span class="item-status">অফলাইন</span></div>
-        <div class="deen-item">Deen Helper<span class="item-status">শীঘ্রই</span></div>
-        <div class="deen-item">Deen Library<span class="item-status">তৈরি হচ্ছে</span></div>
-        <div class="deen-item">Deen Magazin<span class="item-status">তৈরি হচ্ছে</span></div>
-        <div class="deen-item">Deen Map<span class="item-status">শীঘ্রই</span></div>
-        <div class="deen-item">Deen Pad<span class="item-status">শীঘ্রই</span></div>
-        <a href="https://deenbd.github.io/Pages" target="_blank" class="deen-item">Deen Pages<span class="item-status">↗</span></a>
-        <div class="deen-item">Deen Player<span class="item-status">শীঘ্রই</span></div>
-        <div class="deen-item">Deen Printers<span class="item-status">বন্ধ</span></div>
-        <a href="https://sites.google.com/view/deenprojects" target="_blank" class="deen-item">Deen Projects<span class="item-status">↗</span></a>
-        <div class="deen-item">Deen Publication<span class="item-status">—</span></div>
-        <div class="deen-item">Deen Store<span class="item-status">তৈরি হচ্ছে</span></div>
-        <a href="https://deen-stories.blogspot.com" target="_blank" class="deen-item">Deen Story<span class="item-status">↗</span></a>
-        <a href="https://sites.google.com/view/deen-studio" target="_blank" class="deen-item">Deen Studio<span class="item-status">↗</span></a>
-        <div class="deen-item">Deen Translator<span class="item-status">শীঘ্রই</span></div>
-        <a href="https://www.youtube.com/@DeenVideosbd" target="_blank" class="deen-item">Deen Videos<span class="item-status">↗</span></a>
-        <div class="deen-item">Deen Voice Chat<span class="item-status">শীঘ্রই</span></div>
-        <div class="deen-item">Deen WebApp<span class="item-status">শীঘ্রই</span></div>
+
+        <a href="https://deenbd.github.io/Saad---Abdullah/" target="_blank" class="deen-item">
+          <img src="logo1.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">1</div>
+          <span class="item-name">Deen Abdullah &amp; Saad</span><span class="item-status">↗</span>
+        </a>
+
+        <a href="https://sites.google.com/view/deen-academy" target="_blank" class="deen-item">
+          <img src="logo2.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">2</div>
+          <span class="item-name">Deen Academy</span><span class="item-status">↗</span>
+        </a>
+
+        <div class="deen-item">
+          <img src="logo3.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">3</div>
+          <span class="item-name">Deen AI</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
+        <div class="deen-item">
+          <img src="logo4.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">4</div>
+          <span class="item-name">Deen Browser</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
+        <div class="deen-item">
+          <img src="logo5b.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">5b</div>
+          <span class="item-name">Deen Builder</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
+        <a href="https://www.youtube.com/@Deen-Cartoon" target="_blank" class="deen-item">
+          <img src="logo6.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">6</div>
+          <span class="item-name">Deen Cartoon</span><span class="item-status">↗</span>
+        </a>
+
+        <a href="https://deenbd.github.io/chat" target="_blank" class="deen-item">
+          <img src="logo5.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">5</div>
+          <span class="item-name">Deen Chat</span><span class="item-status">↗</span>
+        </a>
+
+        <div class="deen-item">
+          <img src="logo8.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">8</div>
+          <span class="item-name">Deen Coder</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
+        <div class="deen-item">
+          <img src="logo9.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">9</div>
+          <span class="item-name">Deen Games</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
+        <a href="https://sites.google.com/view/maktabatuddeen" target="_blank" class="deen-item">
+          <img src="logo10.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">10</div>
+          <span class="item-name">Maktabatud Deen</span><span class="item-status">↗</span>
+        </a>
+
+        <div class="deen-item">
+          <img src="logo11.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">11</div>
+          <span class="item-name">Deen Helper</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
+        <div class="deen-item">
+          <img src="logo12.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">12</div>
+          <span class="item-name">Deen Library</span><span class="item-status">তৈরি হচ্ছে</span>
+        </div>
+
+        <div class="deen-item">
+          <img src="logo13.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">13</div>
+          <span class="item-name">Deen Magazin</span><span class="item-status">তৈরি হচ্ছে</span>
+        </div>
+
+        <div class="deen-item">
+          <img src="logo14.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">14</div>
+          <span class="item-name">Deen Map</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
+        <div class="deen-item">
+          <img src="logo15.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">15</div>
+          <span class="item-name">Deen Pad</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
+        <a href="https://deenbd.github.io/Pages" target="_blank" class="deen-item">
+          <img src="logo16.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">16</div>
+          <span class="item-name">Deen Pages</span><span class="item-status">↗</span>
+        </a>
+
+        <div class="deen-item">
+          <img src="logo17.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">17</div>
+          <span class="item-name">Deen Player</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
+        <div class="deen-item">
+          <img src="logo18.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">18</div>
+          <span class="item-name">Deen Printers</span><span class="item-status">বন্ধ</span>
+        </div>
+
+        <a href="https://sites.google.com/view/deenprojects" target="_blank" class="deen-item">
+          <img src="logo19.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">19</div>
+          <span class="item-name">Deen Projects</span><span class="item-status">↗</span>
+        </a>
+
+        <div class="deen-item">
+          <img src="logo20.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">20</div>
+          <span class="item-name">Deen Publication</span><span class="item-status">—</span>
+        </div>
+
+        <div class="deen-item">
+          <img src="logo21.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">21</div>
+          <span class="item-name">Deen Store</span><span class="item-status">তৈরি হচ্ছে</span>
+        </div>
+
+        <a href="https://deen-stories.blogspot.com" target="_blank" class="deen-item">
+          <img src="logo22.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">22</div>
+          <span class="item-name">Deen Story</span><span class="item-status">↗</span>
+        </a>
+
+        <a href="https://sites.google.com/view/deen-studio" target="_blank" class="deen-item">
+          <img src="logo23.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">23</div>
+          <span class="item-name">Deen Studio</span><span class="item-status">↗</span>
+        </a>
+
+        <div class="deen-item">
+          <img src="logo26.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">26</div>
+          <span class="item-name">Deen Translator</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
+        <a href="https://www.youtube.com/@DeenVideosbd" target="_blank" class="deen-item">
+          <img src="logo24.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">24</div>
+          <span class="item-name">Deen Videos</span><span class="item-status">↗</span>
+        </a>
+
+        <div class="deen-item">
+          <img src="logo27.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">27</div>
+          <span class="item-name">Deen Voice Chat</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
+        <div class="deen-item">
+          <img src="logo28.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">28</div>
+          <span class="item-name">Deen WebApp</span><span class="item-status">শীঘ্রই</span>
+        </div>
+
       </div>
     </div>
   </div>
@@ -811,69 +491,132 @@
 
 <!-- ══ CONTENT ══ -->
 <section id="content">
-  <div class="section-label reveal">ডিজিটাল কন্টেন্ট</div>
+  <div class="section-label reveal">কন্টেন্ট</div>
   <h2 class="section-title reveal reveal-delay-1">তাঁর সৃষ্টিকর্ম</h2>
   <p class="section-subtitle reveal reveal-delay-2">
-    গল্প, কবিতা, ভিডিও — বিভিন্ন মাধ্যমে উমার ইবন শরীফের সৃজনশীল প্রকাশ।
+    গল্প, ভিডিও, প্রোজেক্ট — বিভিন্ন জায়গায় উমারের কাজ।
   </p>
   <div class="content-grid">
 
     <a href="https://deen-stories.blogspot.com" target="_blank" class="content-card reveal">
-      <div class="content-cat">✍️ ব্লগ</div>
-      <h3 class="content-title">দ্বীন স্টোরি ব্লগ</h3>
-      <p class="content-desc">
-        দ্বীন স্টোরি ব্লগে উমার ইবন শরীফ নিয়মিত ইসলামিক গল্প ও কবিতা লিখে থাকেন।
-        প্রতিটি রচনায় থাকে ঈমান, ভালোবাসা ও জীবনের গভীর কথা।
-        সাহিত্যের ভাষায় দ্বীনের বার্তা পৌঁছে দেওয়াই তাঁর লক্ষ্য।
-      </p>
-      <span class="content-cta">↗ ব্লগ পড়ুন</span>
+      <div class="content-cat">ব্লগ</div>
+      <h3 class="content-title">দ্বীন স্টোরি</h3>
+      <p class="content-desc">ইসলামিক গল্প ও কবিতার ব্লগ।</p>
+      <span class="content-cta">পড়ুন</span>
     </a>
 
     <a href="https://www.youtube.com/@DeenVideosbd" target="_blank" class="content-card reveal reveal-delay-1">
-      <div class="content-cat">🎬 ইউটিউব</div>
+      <div class="content-cat">ইউটিউব</div>
       <h3 class="content-title">দ্বীন ভিডিওস</h3>
-      <p class="content-desc">
-        দ্বীন ভিডিওস চ্যানেলে ইসলামিক শিক্ষামূলক ও অনুপ্রেরণামূলক ভিডিও
-        নিয়মিত আপলোড করা হয়। প্রতিটি ভিডিওতে থাকে জ্ঞান ও বিনোদনের মিশেল।
-      </p>
-      <span class="content-cta">↗ চ্যানেলে যান</span>
+      <p class="content-desc">ইউটিউব ও মাহফিলে ইসলামিক ভিডিও।</p>
+      <span class="content-cta">দেখুন</span>
+    </a>
+
+    <a href="https://mahfil.net/channel/16495" target="_blank" class="content-card reveal reveal-delay-1">
+      <div class="content-cat">মাহফিল</div>
+      <h3 class="content-title">দ্বীন ভিডিওস — মাহফিল</h3>
+      <p class="content-desc">মাহফিল প্ল্যাটফর্মে দ্বীন ভিডিওসের চ্যানেল।</p>
+      <span class="content-cta">দেখুন</span>
     </a>
 
     <a href="https://sites.google.com/view/deenprojects" target="_blank" class="content-card reveal reveal-delay-2">
-      <div class="content-cat">🖥️ স্ক্র্যাচ</div>
+      <div class="content-cat">স্ক্র্যাচ</div>
       <h3 class="content-title">দ্বীন প্রোজেক্টস</h3>
-      <p class="content-desc">
-        স্ক্র্যাচে তৈরি ইন্টারেক্টিভ ইসলামিক প্রোজেক্ট দ্বীন প্রোজেক্টসে
-        শেয়ার করা হয়। শিশু থেকে বড় — সবার জন্য শিক্ষামূলক কন্টেন্ট।
-      </p>
-      <span class="content-cta">↗ প্রোজেক্টস দেখুন</span>
+      <p class="content-desc">স্ক্র্যাচে বানানো ইসলামিক ইন্টারেক্টিভ প্রোজেক্ট।</p>
+      <span class="content-cta">দেখুন</span>
+    </a>
+
+    <a href="https://www.youtube.com/@Deen-Cartoon" target="_blank" class="content-card reveal reveal-delay-2">
+      <div class="content-cat">কার্টুন</div>
+      <h3 class="content-title">দ্বীন কার্টুন</h3>
+      <p class="content-desc">শিশুদের জন্য ইসলামিক অ্যানিমেশন।</p>
+      <span class="content-cta">দেখুন</span>
+    </a>
+
+    <a href="https://hikmah.net/@AbulKitab" target="_blank" class="content-card reveal reveal-delay-3">
+      <div class="content-cat">হিকমাহ</div>
+      <h3 class="content-title">হিকমাহ অ্যাকাউন্ট</h3>
+      <p class="content-desc">হিকমাহ প্ল্যাটফর্মে উমারের অ্যাকাউন্ট।</p>
+      <span class="content-cta">দেখুন</span>
     </a>
 
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══ CONTACT / CHAT ══ -->
+<section id="contact">
+  <div class="section-label reveal">যোগাযোগ</div>
+  <h2 class="section-title reveal reveal-delay-1">কথা বলুন</h2>
+
+  <div class="contact-wrap">
+    <div class="reveal reveal-delay-1">
+      <p class="section-subtitle" style="margin-bottom:0;">
+        উমারের সাথে যোগাযোগ করতে নিচের মাধ্যমগুলো ব্যবহার করুন।
+        অথবা ডানে দ্বীন চ্যাটে সরাসরি মেসেজ পাঠান।
+      </p>
+      <div class="contact-links">
+        <a href="mailto:umar.binsharif21@gmail.com" class="contact-link">
+          <div>
+            <span class="contact-link-label">ইমেইল</span>
+            <span class="contact-link-val">umar.binsharif21@gmail.com</span>
+          </div>
+        </a>
+        <a href="https://hikmah.net/@AbulKitab" target="_blank" class="contact-link">
+          <div>
+            <span class="contact-link-label">হিকমাহ</span>
+            <span class="contact-link-val">hikmah.net/@AbulKitab</span>
+          </div>
+        </a>
+        <a href="https://deenbd.github.io/chat" target="_blank" class="contact-link">
+          <div>
+            <span class="contact-link-label">দ্বীন চ্যাট</span>
+            <span class="contact-link-val">deenbd.github.io/chat</span>
+          </div>
+        </a>
+        <a href="umarbinsharif.github.io/web" class="contact-link">
+          <div>
+            <span class="contact-link-label">ওয়েবসাইট</span>
+            <span class="contact-link-val">umarbinsharif.github.io/web</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="chat-embed-box reveal reveal-delay-2">
+      <div class="chat-label">দ্বীন চ্যাট — সরাসরি কথা বলুন</div>
+      <div class="chat-frame-wrap">
+        <iframe src="https://deenbd.github.io/chat"
+                title="দ্বীন চ্যাট"
+                loading="lazy"
+                allow="clipboard-write">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
 <footer>
-  <div>
-    <div class="footer-name">عُمَر ابْنُ شَرِيف</div>
-    <span class="footer-sub">Umar ibn Sharif · উমার ইবন শরীফ</span>
+  <div class="footer-logo">
+    <img src="logo.png" alt="logo" onerror="this.style.display='none'">
+    <div class="footer-name-block">
+      <span class="footer-name">عُمَر ابْنُ شَرِيف</span>
+      <span class="footer-sub">Umar ibn Sharif · উমার ইবন শরীফ</span>
+    </div>
   </div>
   <div class="footer-copy">
-    © 2025 উমার ইবন শরীফ<br/>
-    <span style="font-size:.7rem;">umar.github.io/pweb</span>
+    &copy; 2025 উমার ইবন শরীফ<br/>
+    <span style="font-size:.68rem;">umarbinsharif.github.io/web</span>
   </div>
-  <a href="#hero" class="footer-link">↑ উপরে যান</a>
+  <a href="#hero" class="footer-link">উপরে যান</a>
 </footer>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.10 });
-  reveals.forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Nav highlight
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
