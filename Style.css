@@ -449,4 +449,5 @@ footer {
   .contact-wrap { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 18px; text-align: center; padding: 36px 20px; }
   .divider { padding: 0 20px; }
+
 }
