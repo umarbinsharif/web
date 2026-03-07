@@ -4,6 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>উমার বিন শরীফ | Umar bin Sharif</title>
+  <!-- নাম: উমার বিন শরীফ | عُمَر بِن شَرِيف | Umar bin Sharif -->
   <link href="logo.png" rel="icon" />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Noto+Sans+Bengali:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <style>
@@ -870,10 +871,10 @@ footer {
           <img src="logo13.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">13</div>
           <span class="item-name">Deen Magazin</span><span class="item-status">তৈরি হচ্ছে</span>
         </div>
-        <div class="deen-item">
+        <a href="https://github.com/umarbinsharif/web/raw/refs/heads/main/Deen%20Map.apk" class="deen-item">
           <img src="logo14.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">14</div>
-          <span class="item-name">Deen Map</span><span class="item-status">শীঘ্রই</span>
-        </div>
+          <span class="item-name">Deen Map</span><span class="item-status">APK</span>
+        </a>
         <div class="deen-item">
           <img src="logo15.png" class="deen-item-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="deen-item-logo-placeholder" style="display:none;">15</div>
           <span class="item-name">Deen Pad</span><span class="item-status">কাজ চলছে</span>
@@ -1053,7 +1054,7 @@ footer {
   <a href="#hero" class="footer-link">উপরে যান</a>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.10 });
@@ -1061,6 +1062,14 @@ footer {
 
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () =
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 150) cur = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--gold)' : '';
+    });
+  });
+</script>
 
-
+</body>
+</html>
